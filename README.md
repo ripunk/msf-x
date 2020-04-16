@@ -1,10 +1,12 @@
-cd msf-x
-python2 installer.py
+cd msf-x                                            
+python2 installer.py                                 
 
-Usage : bash b
+Usage : bash b                          
 
 target beda jaringan buka applikasi open vpn lalu import config yg sudah di sediakan lalu klik connect
 
 dah pilih payload (beda jaringan)
 
-untuk target satu jaringan ( satu jaringan itu seperti target menggunakan wifi dan kita dalam satu jaringan wifi yg sama) 
+untuk target satu jaringan ( satu jaringan itu seperti target menggunakan wifi dan kita dalam satu jaringan wifi yg sama).                             
+
+
