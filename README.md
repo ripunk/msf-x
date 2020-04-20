@@ -15,8 +15,8 @@ untuk target satu jaringan ( satu jaringan itu seperti target menggunakan wifi d
 ```
 
 ## SOSIALMEDIA
-```
-https://m.youtube.com/channel/UCWgaeAjzG5xev9MGK-BlgKA
 
-https://www.facebook.com/TermuxKaliNethunter/
-```
+### YOUTUBE https://m.youtube.com/channel/UCWgaeAjzG5xev9MGK-BlgKA
+
+### FANSPAGE https://www.facebook.com/TermuxKaliNethunter/
+
