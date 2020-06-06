@@ -1,0 +1,108 @@
+#!/bin/bash
+
+#cek_curl
+echo "Cek Curl"
+which curl > /dev/null 2&>1
+sleep 2
+if [ "$?" -eq "0" ]; then
+echo "Curl Sudah Di install"
+which curl > /dev/null 2&>1
+sleep 2
+else
+echo "Curl Belum Di Install"
+sleep 2
+echo "Install Curl"
+apt install curl
+sleep 2
+fi
+clear
+
+#check_git
+echo "Cek Git"
+which git > /dev/null 2&>1
+sleep 2
+if [ "$?" -eq "0" ]; then
+echo "Git Sudah Di Install"
+which git > /dev/null 2&>1
+else
+echo "Git Belum Di Install"
+sleep2
+echo "Install Git"
+apt install git
+sleep 2
+fi
+clear
+
+#check_wiget
+echo "Cek Wget"
+which wget > /dev/null 2&>1
+sleep 2
+if [ "$?" -eq "0" ]; then
+echo "wget Sudah Di Install"
+which wget > /dev/null 2&>1
+else
+echo "wget Belum Di Install"
+sleep2
+echo "Install wget"
+apt install wget
+sleep 2
+fi
+cler
+
+#cek_apktool
+echo "Cek Apktool"
+which apktool > /dev/null 2&>1
+sleep 2
+if [ "$?" -eq "0" ]; then
+echo "apktool Sudah Di Install"
+which apktool > /dev/null 2&>1
+else
+echo "apktool Belum Di Install"
+sleep2
+echo "Install Apktool"
+dpkg -i install apktool.deb
+sleep2
+fi
+clear
+
+#cek_msf
+echo "Cek Metasploit"
+which metasploit > /dev/null 2&>1
+sleep 2
+if [ "$?" -eq "0" ]; then
+echo "Metasploit Sudah Di Install"
+which metasploit > /dev/null 2&>1
+else
+echo "Metasploit Belum Di Install"
+sleep2
+echo "Install Metasploit"
+fi
+cek=$(getprop ro.build.version.release '{print $2}')
+os=($cek
+sleep 1)
+echo "Os Android Kamu $cek "
+sleep 2
+if [ $cek = "9" ] || [ $cek = "10" ] || [ $cek = "7" ] || [ $cek = "8" ];
+then
+   apt install unstable-repo -y
+   apt install metasploit-framework -y
+else
+    echo "Pastikan Internet Anda Stabile"
+fi
+if [ $cek = " 5 " ] || [ $cek = "6" ];
+then
+   apt install unzip
+   curl -LO https://github.com/termux/termux-packages/files/3995119/metasploit_5.0.65-1_all.deb.gz
+   gunzip metasploit_5.0.65-1_all.deb.gz
+   dpkg -i metasploit_5.0.65-1_all.deb
+   apt install -f
+   apt --fix-broken install
+   rm -fr metasploit_5.0.65-1_all.deb
+else
+   echo "Pastikan Jaringan Internet Anda Bagus "
+fi
+
+
+
+
+
