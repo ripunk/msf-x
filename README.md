@@ -1,9 +1,17 @@
 # MSF-X
 ```
 git clone github.com/ripunk/msf-x.git
-cd msf-x                                            
-python2 installer.py                                 
-Usage : bash b                          
+cd msf-x
+for termux
+bash termux_installer
+for nethunter 
+bash nh_installer
+
+Usage : termux
+bash term_msf-x
+
+Usage : Nethunter
+bash nh_msf-x
 ```
 ## NOTE
 ```
